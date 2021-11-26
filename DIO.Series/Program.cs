@@ -2,7 +2,7 @@
 
 namespace DIO.Series
 {
-    class Progran
+    class Program
     {
         static SerieRepositorio repositorio = new SerieRepositorio();
         static void Main(string[] args)
@@ -23,10 +23,10 @@ namespace DIO.Series
 						AtualizarSerie();
 						break;
 					case "4":
-						//ExcluirSerie();
+						ExcluirSerie();
 						break;
 					case "5":
-						//VisualizarSerie();
+						VisualizarSerie();
 						break;
 					case "C":
 						Console.Clear();
@@ -41,17 +41,32 @@ namespace DIO.Series
 
 			Console.WriteLine("Obrigado por utilizar nossos serviços.");
 			Console.ReadLine();
-        
         }
 
-         private static void AtualizarSerie()
+        private static void ExcluirSerie()
 		{
 			Console.Write("Digite o id da série: ");
 			int indiceSerie = int.Parse(Console.ReadLine());
 
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getvalues?view=netcore-3.1
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getname?view=netcore-3.1
-			foreach (int i in Enum.GetValues(typeof(Genero)))
+			repositorio.Exclui(indiceSerie);
+		}
+
+        private static void VisualizarSerie()
+		{
+			Console.Write("Digite o id da série: ");
+			int indiceSerie = int.Parse(Console.ReadLine());
+
+			var serie = repositorio.RetornaPorId(indiceSerie);
+
+			Console.WriteLine(serie);
+		}
+
+        private static void AtualizarSerie()
+		{
+			Console.Write("Digite o id da série: ");
+			int indiceSerie = int.Parse(Console.ReadLine());
+
+						foreach (int i in Enum.GetValues(typeof(Genero)))
 			{
 				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
 			}
@@ -63,7 +78,7 @@ namespace DIO.Series
 
 			Console.Write("Digite o Ano de Início da Série: ");
 			int entradaAno = int.Parse(Console.ReadLine());
-
+			
 			Console.Write("Digite a Descrição da Série: ");
 			string entradaDescricao = Console.ReadLine();
 
@@ -75,7 +90,6 @@ namespace DIO.Series
 
 			repositorio.Atualiza(indiceSerie, atualizaSerie);
 		}
-
         private static void ListarSeries()
 		{
 			Console.WriteLine("Listar séries");
@@ -100,9 +114,7 @@ namespace DIO.Series
 		{
 			Console.WriteLine("Inserir nova série");
 
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getvalues?view=netcore-3.1
-			// https://docs.microsoft.com/pt-br/dotnet/api/system.enum.getname?view=netcore-3.1
-			foreach (int i in Enum.GetValues(typeof(Genero)))
+						foreach (int i in Enum.GetValues(typeof(Genero)))
 			{
 				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
 			}
@@ -126,6 +138,7 @@ namespace DIO.Series
 
 			repositorio.Insere(novaSerie);
 		}
+
         private static string ObterOpcaoUsuario()
 		{
 			Console.WriteLine();

@@ -9,7 +9,7 @@ namespace DIO.Series
     {
         //Atributos
         private Genero Genero { get; set; }
-        private string Titulo { get; set; }
+        private string Titulo { get; set; } 
         private string Descricao { get; set; }
         private int Ano { get; set; }
         private bool Excluido { get; set; }
@@ -31,7 +31,7 @@ namespace DIO.Series
             retorno += "Titulo: " + this.Titulo + Environment.NewLine;
             retorno += "Descrição: " + this.Descricao + Environment.NewLine;
             retorno += "Ano de Início: " + this.Ano + Environment.NewLine;
-            retorno += "Excluido: " + this.Excluido;
+            retorno += "Excluido: " + this.Excluido + Environment.NewLine;
 			return retorno;
         }
         public string retornaTitulo()
@@ -41,6 +41,10 @@ namespace DIO.Series
         public int retornaId()
         {
             return this.Id;
+        }
+        public bool retornaExcluido()
+        {
+            return this.Excluido;
         }
         
         public void Excluir()

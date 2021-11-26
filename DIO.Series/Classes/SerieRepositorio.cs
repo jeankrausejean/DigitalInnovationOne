@@ -29,7 +29,7 @@ namespace DIO.Series
             return listaserie;
         }
 
-        public int Proximo()
+        public int ProximoId()
         {
             return listaserie.Count;
         }
